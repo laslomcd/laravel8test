@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [PostController::class, 'index'])->name('home');
+Route::get('post/create', [PostController::class, 'create']);
+Route::post('post', [PostController::class, 'store']);
+Route::get('post/{post}/edit', [PostController::class, 'edit']);
+Route::get('post/{post}', [PostController::class, 'show']);
+Route::put('post/{post}', [PostController::class, 'update']);
+Route::delete('post/{post}', [PostController::class, 'destroy']);
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
